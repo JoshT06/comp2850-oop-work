@@ -1,26 +1,61 @@
 import java.io.File
+import kotlin.random.Random
 
 
-/*isValid(word: String): Boolean{
-
-}*/
+fun isValid(word: String): Boolean{
+    if (word.length != 5) {
+        return false
+    }
+    for (each in word) {
+        if (each.isLetter() == false){
+            return false
+        }
+    }
+    return true
+}
 
 fun readWordList(words: String): MutableList<String>
 
 = File(words).readLines().toMutableList()
 
-/*pickRandomWord(words: MutableList<String>): String{
-
+fun pickRandomWord(words: MutableList<String>): String {
+    val answer = words[Random.nextInt(0, words.size)]
+    words.remove(answer)
+    return answer
 }
 
-obtainGuess(attempt: Int): String{
-
+fun obtainGuess(attempt: Int): String{
+    println("Attempt $attempt: ") 
+    var guess: String
+    do {
+        println("Input a valid word")
+        guess = readln().uppercase()
+    }
+    while (isValid(guess) == false)
+    return guess
 }
 
-evaluateGuess(guess: String, target: String): List<Int>{
-
+fun evaluateGuess(guess: String, target: String): MutableList<Int>{
+    var matches = mutableListOf(0,0,0,0,0)
+    for (each in 0..4) { 
+        if (guess[each] == target[each]) {
+            matches[each] = 1
+         }
+    }
+    return matches
 }
 
-displayGuess(guess: String, matches: List<Int>){
+fun displayGuess(guess: String, matches: MutableList<Int>){
+    var display = mutableListOf("?","?","?","?","?")
+    for (each in 0..4){
+        if (matches[each] == 1){
+            display[each] = guess[each].toString()
+        }
+        else{
+            display[each] = "?"
+        }
+    }
+    println(display.toString())
 
-}*/
+
+}
