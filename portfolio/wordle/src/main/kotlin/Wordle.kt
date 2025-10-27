@@ -3,15 +3,16 @@ import kotlin.random.Random
 
 
 fun isValid(word: String): Boolean{
+    var valid = true
     if (word.length != 5) {
-        return false
+        valid = false
     }
     for (each in word) {
         if (each.isLetter() == false){
-            return false
+            valid = false
         }
     }
-    return true
+    return valid
 }
 
 fun readWordList(words: String): MutableList<String>
